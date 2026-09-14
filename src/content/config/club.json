@@ -1,14 +1,14 @@
 {
-  "name": "Shotokan Karaté Montfort",
-  "fullName": "Shotokan Karaté-dō Montfort-sur-Meu",
-  "address": "Dojo Coesec, Route d'Iffendic, 35160 Montfort-sur-Meu",
-  "email": "skdmontfort@gmail.com",
-  "phone": "06 72 08 56 81",
+  "president": "Pierrick Lemou",
+  "footerDescription": "Club de karaté affilié à la Fédération Française de Karaté. Cours pour enfants, adolescents et adultes.",
+  "treasurer": "Ismaël Delaunay",
   "phone2": "06 27 63 23 90",
   "facebook": "https://www.facebook.com/Shotokan-Karate-Do-Montfort-sMeu-502576590248219",
+  "name": "Shotokan Karaté Montfort",
+  "phone": "06 72 08 56 81",
   "instagram": "https://www.instagram.com/skdmontfort/",
-  "president": "Pierrick Lemou",
-  "treasurer": "Ismaël Delaunay",
-  "secretary": "Christophe Segouin",
-  "footerDescription": "Club de karaté affilié à la Fédération Française de Karaté. Cours pour enfants, adolescents et adultes."
+  "address": "Dojo Coesec, Route d'Iffendic, 35160 Montfort-sur-Meu",
+  "secretary": "Jérémy Bureau",
+  "fullName": "Shotokan Karaté-dō Montfort-sur-Meu",
+  "email": "skdmontfort@gmail.com"
 }
