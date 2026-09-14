@@ -2,11 +2,13 @@
 import { Icon } from 'astro-icon/components';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
-import competitionsData from '../content/config/competitions.json';
-import { splitUpcomingPast } from '../lib/competitions';
+import eventsData from '../content/config/events.json';
+import { splitUpcomingPast } from '../lib/events';
+import type { ClubEvent } from '../lib/events';
 import { galleryPhotoNames } from '../lib/gallery';
+import EventCard from './EventCard.astro';
 
-const upcoming = splitUpcomingPast(competitionsData.events).upcoming.slice(0, 2);
+const upcoming = splitUpcomingPast(eventsData.events as ClubEvent[]).upcoming.slice(0, 3);
 
 const galleryDir = join(process.cwd(), 'public', 'images', 'gallery');
 const galleryPhotos = existsSync(galleryDir) ? galleryPhotoNames(galleryDir).slice(0, 3) : [];
@@ -17,37 +19,23 @@ const base = import.meta.env.BASE_URL;
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-          Prochaines <span class="text-red-600">compétitions</span>
+          Prochains <span class="text-red-600">rendez-vous</span>
         </h2>
         <div class="w-20 h-1 bg-red-600 mx-auto"></div>
       </div>
 
-      <div class="space-y-4">
+      <div class="space-y-8">
         {upcoming.map((event) => (
-          <article class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
-            <div class="bg-red-600 text-white flex items-center justify-center rounded-xl w-20 h-14 flex-shrink-0">
-              <span class="text-xl font-bold">{event.day}</span>
-              <span class="text-xs uppercase tracking-wide ml-1">{event.month}</span>
-            </div>
-            <div class="flex-1">
-              <h3 class="font-semibold text-gray-900">{event.title}</h3>
-              <p class="text-sm text-gray-500">{event.categories}</p>
-              <p class="text-sm text-gray-400 mt-1">
-                <Icon name="lucide:map-pin" class="w-4 h-4 inline text-gray-400 -mt-0.5" /> {event.location}
-                {event.address && <span> — {event.address}</span>}
-              </p>
-            </div>
-            <span class="text-sm text-gray-400">{event.dateLabel}</span>
-          </article>
+          <EventCard event={event} />
         ))}
       </div>
 
       <div class="text-center mt-10">
         <a
-          href={`${base}competitions`}
+          href={`${base}evenements`}
           class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-200"
         >
-          Voir toutes les compétitions
+          Voir tous les événements
           <Icon name="lucide:arrow-right" class="w-4 h-4" />
         </a>
       </div>

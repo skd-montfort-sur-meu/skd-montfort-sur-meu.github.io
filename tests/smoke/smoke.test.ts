@@ -26,7 +26,7 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
   it('generate the 4 expected pages', () => {
     expect(byName('/index.html')).toBeDefined();
     expect(byName('/karate/index.html')).toBeDefined();
-    expect(byName('/competitions/index.html')).toBeDefined();
+    expect(byName('/evenements/index.html')).toBeDefined();
     expect(byName('/photos/index.html')).toBeDefined();
   });
 
@@ -54,12 +54,22 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
     }
   });
 
-  it('show competition events', () => {
-    const page = readFileSync(byName('/competitions/index.html')!, 'utf-8');
+  it('show club events with their categories', () => {
+    const page = readFileSync(byName('/evenements/index.html')!, 'utf-8');
     expect(page).toContain('Championnat départementaux');
     expect(page).toContain('Championnat départemental');
-    expect(page).toContain('À');
+    expect(page).toContain('Stage départemental Multi-Disciplines');
+    expect(page).toContain('Examen de grades – Janvier 2027');
+    expect(page).toContain('3 rue Laennec');
+    expect(page).toContain('Compétitions');
+    expect(page).toContain('Stages');
     expect(page).not.toContain('**');
+  });
+
+  it('preview upcoming events on the homepage', () => {
+    const home = readFileSync(byName('/index.html')!, 'utf-8');
+    expect(home).toContain('Prochains');
+    expect(home).toContain('Stage départemental Multi-Disciplines');
   });
 
   it('show teachers and schedule', () => {

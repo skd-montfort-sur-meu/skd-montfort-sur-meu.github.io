@@ -54,14 +54,14 @@ En production, l'interface d'administration est servie par Netlify (`/admin`) ; 
 │   ├── layouts/
 │   │   └── Base.astro            # Layout unique (shell HTML + Header + Footer)
 │   ├── lib/
-│   │   ├── competitions.ts     # Logique dates / échéances (testée)
+│   │   ├── events.ts            # Logique dates / échéances (testée)
 │   │   ├── gallery.ts          # Tri & icônes galerie (testée)
 │   │   ├── markdown.ts         # Helper de rendu markdown
 │   │   └── schemas.ts          # Schémas zod du contenu
 │   ├── pages/
 │   │   ├── index.astro           # Page d'accueil
 │   │   ├── karate.astro          # Page karaté (histoire, katas, vocabulaire)
-│   │   ├── competitions.astro    # Page compétitions
+│   │   ├── evenements.astro      # Page événements (compétitions & stages)
 │   │   └── photos.astro          # Galerie photos
 │   └── styles/
 │       └── global.css            # Import Tailwind CSS
