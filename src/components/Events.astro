@@ -1,0 +1,183 @@
+---
+import { Icon } from 'astro-icon/components';
+import eventsData from '../content/config/events.json';
+import { splitUpcomingPast } from '../lib/events';
+import type { ClubEvent, EventCategory } from '../lib/events';
+import EventCard from './EventCard.astro';
+
+const { upcoming, past } = splitUpcomingPast(eventsData.events as ClubEvent[]);
+const base = import.meta.env.BASE_URL;
+
+type FilterKey = EventCategory | 'all';
+
+const filters: { key: FilterKey; label: string }[] = [
+  { key: 'all', label: 'Tous' },
+  { key: 'competition', label: 'Compétitions' },
+  { key: 'stage', label: 'Stages' },
+  { key: 'grade', label: 'Grades' },
+];
+
+function byFilter(list: typeof upcoming, key: FilterKey) {
+  return key === 'all' ? list : list.filter((e) => e.category === key);
+}
+
+const panels = filters.map((f) => ({
+  ...f,
+  upcoming: byFilter(upcoming, f.key),
+  past: byFilter(past, f.key),
+}));
+---
+<div class="pt-16">
+  <section class="bg-gray-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 80% 30%, #fff 0%, transparent 60%), radial-gradient(circle at 20% 80%, #C41E3A 0%, transparent 50%);"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+      <p class="text-red-500 font-medium tracking-widest uppercase text-sm mb-4">{eventsData.header.eyebrow}</p>
+      <h1 class="text-4xl sm:text-6xl font-bold mb-6">{eventsData.header.titlePrefix} <span class="text-red-500">{eventsData.header.titleHighlight}</span></h1>
+      <p class="text-xl text-gray-300 font-light max-w-3xl mx-auto">
+        {eventsData.header.subtitle}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center gap-2 mb-10">
+        {filters.map((f) => (
+          <button
+            type="button"
+            class:list={[
+              'px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-200',
+              f.key === 'all'
+                ? 'bg-red-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200',
+            ]}
+            data-tab={f.key}
+            data-tab-group="events"
+            role="tab"
+            aria-selected={f.key === 'all'}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {panels.map((f) => (
+        <div
+          id={`panel-${f.key}`}
+          data-panel={f.key}
+          role="tabpanel"
+          class:list={[f.key !== 'all' && 'hidden']}
+        >
+          {f.upcoming.length > 0 && (
+            <div class="mb-12">
+              <div class="text-center mb-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  À <span class="text-red-600">venir</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+              </div>
+
+              <div class="space-y-8">
+                {f.upcoming.map((event) => (
+                  <EventCard event={event} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {f.past.length > 0 && (
+            <div>
+              <div class="text-center mb-8">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                  <span class="text-red-600">Passées</span>
+                </h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+              </div>
+
+              <div class="space-y-4">
+                {f.past.map((event) => (
+                  <article class="bg-white rounded-xl border border-gray-200 px-6 py-4 md:px-8 flex flex-col md:flex-row md:items-center gap-4">
+                    <div class="flex-shrink-0">
+                      <span class="text-lg font-bold text-gray-400">{event.day}</span>
+                      <span class="text-xs uppercase tracking-wide text-gray-400 ml-1">{event.month}</span>
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="font-bold text-gray-700">{event.title}</h3>
+                      {(event.categories || event.audience) && (
+                        <p class="text-sm text-gray-500">{event.categories ?? event.audience}</p>
+                      )}
+                    </div>
+                    {event.location && <p class="text-sm text-gray-400 md:text-right">{event.location}</p>}
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {f.upcoming.length === 0 && f.past.length === 0 && (
+            <p class="text-center text-gray-500 py-16">Aucun événement prévu pour le moment.</p>
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          Pour aller <span class="text-red-600">plus loin</span>
+        </h2>
+        <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {eventsData.blocks.map((block) => (
+          <div class="bg-white rounded-xl shadow-md p-8 text-center hover:shadow-lg transition-shadow duration-300">
+            <div class="w-14 h-14 mx-auto mb-4 bg-red-50 rounded-full flex items-center justify-center">
+              <Icon name={block.icon} class="w-7 h-7 text-red-600" />
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 mb-2">{block.title}</h3>
+            <p class="text-gray-600 mb-3">{block.text}</p>
+            <p class="text-sm text-gray-400">{block.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 bg-white rounded-xl shadow-md p-8 text-center">
+        <p class="text-gray-600 mb-6">
+          Une question sur les événements ou les inscriptions ?
+        </p>
+        <a
+          href={`${base}#contact`}
+          class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-8 py-3 rounded transition-colors duration-200"
+        >
+          Contacter le club
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-tab-group="events"]');
+  const panels = document.querySelectorAll<HTMLElement>('[data-panel]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const key = tab.getAttribute('data-tab');
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('bg-red-600', active);
+        t.classList.toggle('text-white', active);
+        t.classList.toggle('bg-gray-100', !active);
+        t.classList.toggle('text-gray-700', !active);
+        t.classList.toggle('hover:bg-gray-200', !active);
+        t.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+      panels.forEach((p) => {
+        p.classList.toggle('hidden', p.getAttribute('data-panel') !== key);
+      });
+    });
+  });
+</script>

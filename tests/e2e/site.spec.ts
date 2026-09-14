@@ -17,17 +17,49 @@ test('homepage: loads without errors or broken links', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle(/Shotokan Karaté-dō Montfort/);
   await expect(page.locator('h1, .text-2xl').first()).toContainText('Shotokan');
-  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'Compétitions' })).toBeVisible();
+  await expect(page.getByRole('navigation').first().getByRole('link', { name: 'Événements' })).toBeVisible();
 
   expect(consoleErrors, 'console errors: ' + consoleErrors.join(' | ')).toEqual([]);
   expect(failedRequests, 'failed requests: ' + failedRequests.join(' | ')).toEqual([]);
 });
 
-test('navigation: go to the Competitions page from the menu', async ({ page }) => {
+test('navigation: go to the Événements page from the menu', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('link', { name: 'Compétitions', exact: true }).first().click();
-  await expect(page).toHaveURL(/\/competitions/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('échéances');
+  await page.getByRole('link', { name: 'Événements', exact: true }).first().click();
+  await expect(page).toHaveURL(/\/evenements/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('rendez-vous');
+});
+
+test('evenements page: tabs filter by category', async ({ page }) => {
+  await page.goto('/evenements');
+  const stageCard = page.getByRole('heading', { name: /Stage départemental Multi-Disciplines/ });
+  const competitionCard = page.getByRole('heading', { name: 'Championnat départemental', exact: true });
+  const gradeCard = page.getByRole('heading', { name: /Examen de grades/ });
+  await expect(stageCard).toBeVisible();
+  await expect(competitionCard).toBeVisible();
+  await expect(gradeCard).toBeVisible();
+
+  await page.getByRole('tab', { name: 'Compétitions', exact: true }).click();
+  await expect(stageCard).toBeHidden();
+  await expect(competitionCard).toBeVisible();
+  await expect(gradeCard).toBeHidden();
+
+  await page.getByRole('tab', { name: 'Stages', exact: true }).click();
+  await expect(stageCard).toBeVisible();
+  await expect(competitionCard).toBeHidden();
+  await expect(gradeCard).toBeHidden();
+
+  await page.getByRole('tab', { name: 'Grades', exact: true }).click();
+  await expect(stageCard).toBeHidden();
+  await expect(competitionCard).toBeHidden();
+  await expect(gradeCard).toBeVisible();
+});
+
+test('homepage: previews the upcoming stage', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: /Prochains rendez-vous/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Stage départemental Multi-Disciplines/ })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Voir tous les événements/ })).toBeVisible();
 });
 
 test('photos page: lightbox opens and closes', async ({ page }) => {

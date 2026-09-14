@@ -1,0 +1,67 @@
+{
+  "header": {
+    "eyebrow": "Événements",
+    "titlePrefix": "Les rendez-vous",
+    "titleHighlight": "du club",
+    "subtitle": "Compétitions, stages et passages de grade : les prochaines échéances du club."
+  },
+  "events": [
+    {
+      "category": "stage",
+      "title": "Stage départemental Multi-Disciplines",
+      "date": "2026-09-20",
+      "time": "9h à 12h",
+      "location": "Complexe sportif",
+      "address": "3 rue Laennec, 35770 Vezin-sur-Seiche",
+      "audience": "À partir de 10 ans",
+      "price": "Gratuit",
+      "icon": "lucide:users"
+    },
+    {
+      "category": "competition",
+      "title": "Coupe & Championnat départementaux",
+      "categories": "Kata / Combat — Coupe Pupilles / Benjamins, Championnat Minimes",
+      "date": "2026-10-03",
+      "time": "Informations communiquées par les enseignants",
+      "location": "Salle Vitalia",
+      "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
+      "icon": "lucide:trophy"
+    },
+    {
+      "category": "competition",
+      "title": "Championnat départemental",
+      "categories": "Kata / Combat — Cadets / Juniors / Seniors / Vétérans",
+      "date": "2026-10-04",
+      "time": "Informations communiquées par les enseignants",
+      "location": "Salle Vitalia",
+      "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
+      "icon": "lucide:medal"
+    },
+    {
+      "category": "grade",
+      "title": "Examen de grades – Janvier 2027",
+      "date": "2027-01-17",
+      "icon": "lucide:badge-check"
+    }
+  ],
+  "blocks": [
+    {
+      "title": "Compétitions Kata & Combat",
+      "text": "Passez vos épreuves devant les juges en kata ou en combat",
+      "detail": "Pensez à vérifier votre licence et vos protections auprès du club.",
+      "icon": "lucide:shield"
+    },
+    {
+      "title": "Stages",
+      "text": "Perfectionnez vos techniques et préparez vos passages de grade",
+      "detail": "Encadré par des intervenants.",
+      "icon": "lucide:users"
+    },
+    {
+      "title": "Grades",
+      "text": "Consultez les dates d'examens pour le passage de vos grades",
+      "detail": "Les examens sont organisés par le comité départemental.",
+      "icon": "lucide:badge-check"
+    }
+  ]
+}

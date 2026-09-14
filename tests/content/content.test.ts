@@ -7,7 +7,7 @@ import {
   clubScheduleSchema,
   clubSchema,
   clubTeachersSchema,
-  competitionsSchema,
+  eventsSchema,
   karateSchema,
 } from '../../src/lib/schemas';
 
@@ -25,14 +25,14 @@ describe('editable content (src/content/config)', () => {
     ['club-teachers.json', clubTeachersSchema, readJson('club-teachers.json')],
     ['club-schedule.json', clubScheduleSchema, readJson('club-schedule.json')],
     ['club-prices.json', clubPricesSchema, readJson('club-prices.json')],
-    ['competitions.json', competitionsSchema, readJson('competitions.json')],
+    ['events.json', eventsSchema, readJson('events.json')],
     ['karate.json', karateSchema, readJson('karate.json')],
   ])('validate %s', (_file, schema, data) => {
     expect(() => schema.parse(data)).not.toThrow();
   });
 
   it('events sorted by ascending date in the source file', () => {
-    const { events } = JSON.parse(readFileSync(join(configDir, 'competitions.json'), 'utf-8'));
+    const { events } = JSON.parse(readFileSync(join(configDir, 'events.json'), 'utf-8'));
     const dates = events.map((e: { date: string }) => e.date);
     expect([...dates].sort()).toEqual(dates);
   });

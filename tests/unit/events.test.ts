@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { capitalize, formatEvents, splitUpcomingPast } from '../../src/lib/competitions';
-import type { CompetitionEvent } from '../../src/lib/competitions';
+import { capitalize, formatEvents, splitUpcomingPast } from '../../src/lib/events';
+import type { ClubEvent } from '../../src/lib/events';
 
-const events: CompetitionEvent[] = [
-  { title: 'Championnat', categories: 'Kata', date: '2026-10-04' },
-  { title: 'Coupe', categories: 'Combat', date: '2026-10-03' },
-  { title: 'Interclubs', categories: 'Kata', date: '2026-01-10' },
+const events: ClubEvent[] = [
+  { category: 'competition', title: 'Championnat', categories: 'Kata', date: '2026-10-04' },
+  { category: 'competition', title: 'Coupe', categories: 'Combat', date: '2026-10-03' },
+  { category: 'stage', title: 'Stage', audience: 'À partir de 10 ans', price: 'Gratuit', date: '2026-01-10' },
+  { category: 'grade', title: 'Examen de grades', date: '2027-01-17' },
 ];
 
 describe('capitalize', () => {
@@ -22,7 +23,7 @@ describe('formatEvents', () => {
   const formatted = formatEvents(events);
 
   it('sort events by ascending date', () => {
-    expect(formatted.map((e) => e.date)).toEqual(['2026-01-10', '2026-10-03', '2026-10-04']);
+    expect(formatted.map((e) => e.date)).toEqual(['2026-01-10', '2026-10-03', '2026-10-04', '2027-01-17']);
   });
 
   it('fill in the date fields', () => {
@@ -30,6 +31,7 @@ describe('formatEvents', () => {
     expect(coupe).toMatchObject({
       day: 3,
       month: 'Octobre',
+      monthShort: 'Oct.',
       weekday: 'Samedi',
       dateLabel: 'samedi 3 octobre 2026',
     });
@@ -39,6 +41,21 @@ describe('formatEvents', () => {
     const coupe = formatted.find((e) => e.title === 'Coupe');
     expect(coupe?.categories).toBe('Combat');
     expect(coupe?.date).toBe('2026-10-03');
+  });
+
+  it('preserve the category and stage-specific fields', () => {
+    const stage = formatted.find((e) => e.title === 'Stage');
+    expect(stage).toMatchObject({
+      category: 'stage',
+      audience: 'À partir de 10 ans',
+      price: 'Gratuit',
+    });
+  });
+
+  it('keep the category on a grade event without optional fields', () => {
+    const grade = formatted.find((e) => e.title === 'Examen de grades');
+    expect(grade).toMatchObject({ category: 'grade', date: '2027-01-17' });
+    expect(grade?.location).toBeUndefined();
   });
 });
 
@@ -52,11 +69,11 @@ describe('splitUpcomingPast', () => {
 
   it('put today\u2019s and future events in upcoming', () => {
     const { upcoming } = splitUpcomingPast(events, today);
-    expect(upcoming.map((e) => e.date)).toEqual(['2026-10-03', '2026-10-04']);
+    expect(upcoming.map((e) => e.date)).toEqual(['2026-10-03', '2026-10-04', '2027-01-17']);
   });
 
   it('treat an event on today as upcoming', () => {
-    const sameDay: CompetitionEvent[] = [{ title: 'Aujourd\u2019hui', categories: '', date: '2026-09-12' }];
+    const sameDay: ClubEvent[] = [{ category: 'stage', title: 'Aujourd\u2019hui', date: '2026-09-12' }];
     const { upcoming, past } = splitUpcomingPast(sameDay, today);
     expect(upcoming).toHaveLength(1);
     expect(past).toHaveLength(0);

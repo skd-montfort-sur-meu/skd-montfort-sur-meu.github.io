@@ -136,13 +136,13 @@ collections:
                 min: 0
               - { label: "Description", name: "description", widget: "string" }
 
-  - name: "competitions"
-    label: "Compétitions"
-    description: "Prochaines échéances et compétitions du club."
+  - name: "evenements"
+    label: "Événements"
+    description: "Compétitions et stages du club."
     files:
       - name: "evenements"
         label: "Événements"
-        file: "src/content/config/competitions.json"
+        file: "src/content/config/events.json"
         format: "json"
         fields:
           - label: "Bannière"
@@ -160,8 +160,15 @@ collections:
             widget: "list"
             summary: "{{fields.title}} — {{fields.date}}"
             fields:
+              - label: "Catégorie"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Compétition", value: "competition" }
+                  - { label: "Stage", value: "stage" }
+                  - { label: "Grades", value: "grade" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Épreuves / Catégories", name: "categories", widget: "string" }
+              - { label: "Épreuves / Catégories (compétition)", name: "categories", widget: "string" }
               - label: "Date"
                 name: "date"
                 widget: "datetime"
@@ -171,6 +178,8 @@ collections:
               - { label: "Heure / Détails", name: "time", widget: "string" }
               - { label: "Lieu", name: "location", widget: "string" }
               - { label: "Adresse", name: "address", widget: "string" }
+              - { label: "Public concerné (stage)", name: "audience", widget: "string" }
+              - { label: "Prix (stage)", name: "price", widget: "string" }
               - label: "Icône"
                 name: "icon"
                 widget: "select"
@@ -180,6 +189,30 @@ collections:
                   - { label: "Médaille", value: "lucide:medal" }
                   - { label: "Calendrier", value: "lucide:calendar-days" }
                   - { label: "Groupe", value: "lucide:users" }
+                  - { label: "Étoile", value: "lucide:sparkles" }
+                  - { label: "Cadeau", value: "lucide:gift" }
+                  - { label: "Badge de validation", value: "lucide:badge-check" }
+
+          - label: "Blocs « Pour aller plus loin »"
+            name: "blocks"
+            widget: "list"
+            label_singular: "bloc"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Texte", name: "text", widget: "string" }
+              - { label: "Détail", name: "detail", widget: "string" }
+              - label: "Icône"
+                name: "icon"
+                widget: "select"
+                options:
+                  - { label: "Trophée", value: "lucide:trophy" }
+                  - { label: "Groupe", value: "lucide:users" }
+                  - { label: "Bouclier", value: "lucide:shield" }
+                  - { label: "Cœur", value: "lucide:heart" }
+                  - { label: "Étoile", value: "lucide:sparkles" }
+                  - { label: "Cadeau", value: "lucide:gift" }
+                  - { label: "Badge de validation", value: "lucide:badge-check" }
 
   - name: "karate"
     label: "Karaté"

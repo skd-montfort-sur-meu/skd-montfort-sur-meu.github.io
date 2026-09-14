@@ -56,35 +56,59 @@ export const clubPricesSchema = z.object({
   membership: z.object({ price: z.number().int().min(0), description: required }),
 });
 
-export const competitionIconSchema = z
+export const eventIconSchema = z
   .string()
   .regex(/^lucide:[a-z0-9-]+$/, 'icône invalide');
 
-export const competitionsSchema = z.object({
+const cardLinkSchema = z.object({
+  title: required,
+  text: required,
+  detail: required,
+  icon: eventIconSchema,
+});
+
+const competitionEventSchema = z.object({
+  category: z.literal('competition'),
+  title: required,
+  categories: richtext,
+  date: isoDate,
+  time: required,
+  location: required,
+  address: required,
+  icon: eventIconSchema,
+});
+
+const stageEventSchema = z.object({
+  category: z.literal('stage'),
+  title: required,
+  date: isoDate,
+  time: required,
+  location: required,
+  address: required,
+  audience: required,
+  price: required,
+  icon: eventIconSchema,
+});
+
+const gradeEventSchema = z.object({
+  category: z.literal('grade'),
+  title: required,
+  date: isoDate,
+  time: z.string().optional(),
+  location: z.string().optional(),
+  address: z.string().optional(),
+  icon: eventIconSchema,
+});
+
+export const eventsSchema = z.object({
   header: z.object({
     eyebrow: required,
     titlePrefix: required,
     titleHighlight: required,
     subtitle: required,
   }),
-  events: z
-    .array(
-      z.object({
-        title: required,
-        categories: richtext,
-        date: isoDate,
-        time: required,
-        location: required,
-        address: required,
-        icon: competitionIconSchema,
-      }),
-    )
-    .min(1),
-  links: z
-    .array(
-      z.object({ title: required, text: required, detail: required, icon: competitionIconSchema }),
-    )
-    .min(1),
+  events: z.array(z.discriminatedUnion('category', [competitionEventSchema, stageEventSchema, gradeEventSchema])).min(1),
+  blocks: z.array(cardLinkSchema).min(1),
 });
 
 const karateIconSchema = z.string().min(1);
