@@ -39,7 +39,7 @@ export const clubAboutSchema = z.object({
 
 export const clubTeachersSchema = z.object({
   teachers: z
-    .array(z.object({ name: required, grade: required, description: required }))
+    .array(z.object({ name: required, grade: required, description: required, photo: z.string().optional() }))
     .min(1),
 });
 
