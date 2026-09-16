@@ -1,5 +1,7 @@
 ---
 import clubData from '../content/config/club-teachers.json';
+
+const base = import.meta.env.BASE_URL;
 ---
 <section class="py-20 bg-gray-50">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,10 +18,20 @@ import clubData from '../content/config/club-teachers.json';
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {clubData.teachers.map((teacher) => (
         <div class="bg-white rounded-lg shadow-md overflow-hidden text-center group hover:shadow-xl transition-shadow duration-300">
-          <div class="h-48 bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center">
-            <div class="text-6xl text-red-600/30 group-hover:text-red-600/50 transition-colors">
-              &#9876;
-            </div>
+          <div class="h-48 bg-gradient-to-br from-red-100 to-red-50 flex items-center justify-center overflow-hidden">
+            {teacher.photo ? (
+              <img
+                src={`${base}${teacher.photo.replace(/^\//, '')}`}
+                alt={`Photo de ${teacher.name}`}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="text-6xl text-red-600/30 group-hover:text-red-600/50 transition-colors">
+                &#9876;
+              </div>
+            )}
           </div>
           <div class="p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-2">{teacher.name}</h3>

@@ -84,6 +84,14 @@ collections:
               - { label: "Nom", name: "name", widget: "string" }
               - { label: "Grade", name: "grade", widget: "text" }
               - { label: "Rôle", name: "description", widget: "string" }
+              - label: "Photo"
+                name: "photo"
+                widget: "image"
+                required: false
+                allow_multiple: false
+                media_folder: "/public/images/teachers"
+                public_folder: "/images/teachers"
+                hint: "Photo portrait de l'enseignant (rognée en format paysage dans la carte)."
 
       - name: "horaires"
         label: "Horaires"
