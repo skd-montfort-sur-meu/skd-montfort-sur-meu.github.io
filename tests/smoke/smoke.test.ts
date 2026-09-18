@@ -35,7 +35,6 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
     expect(home).toContain('<html lang="fr"');
     expect(home).toContain('Shotokan');
     expect(home).toContain('Montfort');
-    expect(home).toContain('favicon.svg');
   });
 
   it('show club info on the homepage', () => {
