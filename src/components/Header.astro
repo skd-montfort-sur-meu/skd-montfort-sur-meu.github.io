@@ -13,11 +13,18 @@ const navLinks = [
 <header class="fixed top-0 left-0 right-0 z-50 bg-white">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <a href={`${base}`} class="flex flex-col gap-0">
-        <span class="text-2xl font-bold text-gray-900 tracking-tight leading-tight">
-          <span class="text-red-600">Shotokan</span> Karaté-dō
+      <a href={`${base}`} class="flex items-center gap-3">
+        <img
+          src={`${base}images/logo.jpeg`}
+          alt="Shotokan Karaté-dō Montfort-sur-Meu"
+          class="h-12 w-auto object-contain"
+        />
+        <span class="flex flex-col gap-0">
+          <span class="text-2xl font-bold text-gray-900 tracking-tight leading-tight">
+            <span class="text-red-600">Shotokan</span> Karaté-dō
+          </span>
+          <span class="text-xs text-gray-500 tracking-wide">Montfort-sur-Meu</span>
         </span>
-        <span class="text-xs text-gray-500 tracking-wide">Montfort-sur-Meu</span>
       </a>
       
       <div class="hidden md:flex items-center gap-8">
