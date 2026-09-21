@@ -1,13 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { capitalize, formatEvents, splitUpcomingPast } from '../../src/lib/events';
-import type { ClubEvent } from '../../src/lib/events';
-
-const events: ClubEvent[] = [
-  { category: 'competition', title: 'Championnat', categories: 'Kata', date: '2026-10-04' },
-  { category: 'competition', title: 'Coupe', categories: 'Combat', date: '2026-10-03' },
-  { category: 'stage', title: 'Stage', audience: 'À partir de 10 ans', price: 'Gratuit', date: '2026-01-10' },
-  { category: 'grade', title: 'Examen de grades', date: '2027-01-17' },
-];
+import { eventFixtureToday, eventFixtures } from '../fixtures/events';
 
 describe('capitalize', () => {
   it('capitalize the first letter', () => {
@@ -20,14 +13,14 @@ describe('capitalize', () => {
 });
 
 describe('formatEvents', () => {
-  const formatted = formatEvents(events);
+  const formatted = formatEvents(eventFixtures);
 
   it('sort events by ascending date', () => {
-    expect(formatted.map((e) => e.date)).toEqual(['2026-01-10', '2026-10-03', '2026-10-04', '2027-01-17']);
+    expect(formatted.map((e) => e.date)).toEqual(['2026-01-10', '2026-10-03', '2027-01-17']);
   });
 
   it('fill in the date fields', () => {
-    const coupe = formatted.find((e) => e.title === 'Coupe');
+    const coupe = formatted.find((e) => e.title === 'Coupe de test');
     expect(coupe).toMatchObject({
       day: 3,
       month: 'Octobre',
@@ -38,43 +31,42 @@ describe('formatEvents', () => {
   });
 
   it('keep the original fields', () => {
-    const coupe = formatted.find((e) => e.title === 'Coupe');
-    expect(coupe?.categories).toBe('Combat');
+    const coupe = formatted.find((e) => e.title === 'Coupe de test');
+    expect(coupe?.categories).toBe('Kata / Combat');
     expect(coupe?.date).toBe('2026-10-03');
   });
 
-  it('preserve the category and stage-specific fields', () => {
-    const stage = formatted.find((e) => e.title === 'Stage');
+  it('preserve optional fields', () => {
+    const stage = formatted.find((e) => e.title === 'Stage de test');
     expect(stage).toMatchObject({
       category: 'stage',
-      audience: 'À partir de 10 ans',
+      audience: 'Tous niveaux',
       price: 'Gratuit',
+      location: 'Dojo de test',
     });
   });
 
-  it('keep the category on a grade event without optional fields', () => {
-    const grade = formatted.find((e) => e.title === 'Examen de grades');
+  it('keep a grade event without optional fields', () => {
+    const grade = formatted.find((e) => e.title === 'Examen de grades de test');
     expect(grade).toMatchObject({ category: 'grade', date: '2027-01-17' });
     expect(grade?.location).toBeUndefined();
   });
 });
 
 describe('splitUpcomingPast', () => {
-  const today = new Date('2026-09-12T00:00:00');
-
   it('put earlier events in past', () => {
-    const { past } = splitUpcomingPast(events, today);
+    const { past } = splitUpcomingPast(eventFixtures, eventFixtureToday);
     expect(past.map((e) => e.date)).toEqual(['2026-01-10']);
   });
 
-  it('put today\u2019s and future events in upcoming', () => {
-    const { upcoming } = splitUpcomingPast(events, today);
-    expect(upcoming.map((e) => e.date)).toEqual(['2026-10-03', '2026-10-04', '2027-01-17']);
+  it('put future events in upcoming', () => {
+    const { upcoming } = splitUpcomingPast(eventFixtures, eventFixtureToday);
+    expect(upcoming.map((e) => e.date)).toEqual(['2026-10-03', '2027-01-17']);
   });
 
   it('treat an event on today as upcoming', () => {
-    const sameDay: ClubEvent[] = [{ category: 'stage', title: 'Aujourd\u2019hui', date: '2026-09-12' }];
-    const { upcoming, past } = splitUpcomingPast(sameDay, today);
+    const sameDay = [{ category: 'stage' as const, title: 'Événement du jour', date: '2026-09-12' }];
+    const { upcoming, past } = splitUpcomingPast(sameDay, eventFixtureToday);
     expect(upcoming).toHaveLength(1);
     expect(past).toHaveLength(0);
   });
