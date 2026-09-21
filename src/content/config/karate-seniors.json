@@ -1,0 +1,11 @@
+{
+  "hero": {"eyebrow":"Karaté Santé Seniors","titlePrefix":"Santé, souplesse & ","titleHighlight":"bien-être","subtitle":"Une thérapie par le sport, dans le dialogue et la bienveillance avec votre corps."},
+  "benefits":[
+    {"icon":"lucide:heart-pulse","title":"Équilibre physique et psychique","text":"Une pratique adaptée pour entretenir l’équilibre et le bien-être."},
+    {"icon":"lucide:move","title":"Souplesse musculaire et articulaire","text":"Des exercices pour entretenir la mobilité et la souplesse."},
+    {"icon":"lucide:shield-check","title":"Prévention de santé","text":"Le sport comme outil de prévention et d’entretien de la santé."}
+  ],
+  "details":{"day":"Tous les jeudis","time":"10h30 à 12h00","trial":"2 séances d’essai gratuites","location":"Dojo d’Iffendic — Espace Sport’Iff","address":"Rue du Commerce, 35750 Iffendic"},
+  "teacher":{"name":"Pierrick Lemou","grade":"5e dan BPJESP"},
+  "cta":{"title":"Envie de découvrir le Karaté Santé Seniors ?","text":"Venez essayer gratuitement lors de deux séances d’essai.","primaryLabel":"Nous contacter","primaryHref":"#contact","secondaryLabel":"Retour aux horaires","secondaryHref":"#horaires"}
+}

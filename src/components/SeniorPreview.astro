@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon/components';
+import data from '../content/config/karate-seniors.json';
+
+const base = import.meta.env.BASE_URL;
+---
+<section class="py-16 bg-red-50">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-white rounded-2xl shadow-sm p-8 sm:p-10 lg:p-12">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+        <div class="max-w-2xl">
+          <p class="text-red-600 font-semibold uppercase tracking-wider text-sm mb-2">{data.hero.eyebrow}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Santé, souplesse & <span class="text-red-600">bien-être</span></h2>
+          <p class="text-gray-600 text-lg mb-6">{data.hero.subtitle}</p>
+          <div class="flex flex-col sm:flex-row gap-4 text-sm text-gray-700">
+            <span class="inline-flex items-center gap-2"><Icon name="lucide:calendar-days" class="w-5 h-5 text-red-600" />{data.details.day}, {data.details.time}</span>
+            <span class="inline-flex items-center gap-2"><Icon name="lucide:map-pin" class="w-5 h-5 text-red-600" />Iffendic</span>
+          </div>
+        </div>
+        <div class="flex-shrink-0 text-center lg:text-right">
+          <p class="font-semibold text-gray-900 mb-4">{data.details.trial}</p>
+          <a href={`${base}karate-sante-seniors`} class="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-7 py-3 rounded transition-colors">Découvrir le Karaté Santé Seniors<Icon name="lucide:arrow-right" class="w-4 h-4" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

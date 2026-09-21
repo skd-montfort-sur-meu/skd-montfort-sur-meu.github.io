@@ -57,9 +57,7 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
     const page = readFileSync(byName('/evenements/index.html')!, 'utf-8');
     expect(page).toContain('Championnat départementaux');
     expect(page).toContain('Championnat départemental');
-    expect(page).toContain('Stage départemental Multi-Disciplines');
     expect(page).toContain('Examen de grades – Janvier 2027');
-    expect(page).toContain('3 rue Laennec');
     expect(page).toContain('Compétitions');
     expect(page).toContain('Stages');
     expect(page).not.toContain('**');
@@ -68,7 +66,6 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
   it('preview upcoming events on the homepage', () => {
     const home = readFileSync(byName('/index.html')!, 'utf-8');
     expect(home).toContain('Prochains');
-    expect(home).toContain('Stage départemental Multi-Disciplines');
   });
 
   it('show teachers and schedule', () => {

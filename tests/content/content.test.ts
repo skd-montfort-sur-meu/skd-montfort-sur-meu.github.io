@@ -9,6 +9,7 @@ import {
   clubTeachersSchema,
   eventsSchema,
   karateSchema,
+  karateSeniorsSchema,
 } from '../../src/lib/schemas';
 
 const root = process.cwd();
@@ -27,6 +28,7 @@ describe('editable content (src/content/config)', () => {
     ['club-prices.json', clubPricesSchema, readJson('club-prices.json')],
     ['events.json', eventsSchema, readJson('events.json')],
     ['karate.json', karateSchema, readJson('karate.json')],
+    ['karate-seniors.json', karateSeniorsSchema, readJson('karate-seniors.json')],
   ])('validate %s', (_file, schema, data) => {
     expect(() => schema.parse(data)).not.toThrow();
   });
