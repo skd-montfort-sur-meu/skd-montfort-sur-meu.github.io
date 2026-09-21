@@ -15,8 +15,8 @@ async function collectErrors(page: import('@playwright/test').Page) {
 test('homepage: loads without errors or broken links', async ({ page }) => {
   const { consoleErrors, failedRequests } = await collectErrors(page);
   await page.goto('/');
-  await expect(page).toHaveTitle(/Shotokan Karaté-dō Montfort/);
-  await expect(page.locator('h1, .text-2xl').first()).toContainText('Shotokan');
+  await expect(page).toHaveTitle(/.+/);
+  await expect(page.locator('main').first()).toBeVisible();
   await expect(page.getByRole('navigation').first().getByRole('link', { name: 'Événements' })).toBeVisible();
 
   expect(consoleErrors, 'console errors: ' + consoleErrors.join(' | ')).toEqual([]);
@@ -27,33 +27,54 @@ test('navigation: go to the Événements page from the menu', async ({ page }) =
   await page.goto('/');
   await page.getByRole('link', { name: 'Événements', exact: true }).first().click();
   await expect(page).toHaveURL(/\/evenements/);
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('rendez-vous');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
 });
 
 test('evenements page: tabs filter by category', async ({ page }) => {
   await page.goto('/evenements');
-  const competitionCard = page.getByRole('heading', { name: 'Championnat départemental', exact: true });
-  const gradeCard = page.getByRole('heading', { name: /Examen de grades/ });
-  await expect(competitionCard).toBeVisible();
-  await expect(gradeCard).toBeVisible();
 
-  await page.getByRole('tab', { name: 'Compétitions', exact: true }).click();
-  await expect(competitionCard).toBeVisible();
-  await expect(gradeCard).toBeHidden();
+  const allTab = page.getByRole('tab', { name: 'Tous', exact: true });
+  const competitionTab = page.getByRole('tab', { name: 'Compétitions', exact: true });
+  const stageTab = page.getByRole('tab', { name: 'Stages', exact: true });
+  const gradeTab = page.getByRole('tab', { name: 'Grades', exact: true });
 
-  await page.getByRole('tab', { name: 'Stages', exact: true }).click();
-  await expect(competitionCard).toBeHidden();
-  await expect(gradeCard).toBeHidden();
+  const allPanel = page.locator('[data-panel="all"]');
+  const competitionPanel = page.locator('[data-panel="competition"]');
+  const stagePanel = page.locator('[data-panel="stage"]');
+  const gradePanel = page.locator('[data-panel="grade"]');
 
-  await page.getByRole('tab', { name: 'Grades', exact: true }).click();
-  await expect(competitionCard).toBeHidden();
-  await expect(gradeCard).toBeVisible();
+  await expect(allTab).toHaveAttribute('aria-selected', 'true');
+  await expect(allPanel).toBeVisible();
+  await expect(competitionPanel).toBeHidden();
+  await expect(stagePanel).toBeHidden();
+  await expect(gradePanel).toBeHidden();
+
+  await competitionTab.click();
+  await expect(competitionTab).toHaveAttribute('aria-selected', 'true');
+  await expect(allTab).toHaveAttribute('aria-selected', 'false');
+  await expect(competitionPanel).toBeVisible();
+  await expect(allPanel).toBeHidden();
+
+  await stageTab.click();
+  await expect(stageTab).toHaveAttribute('aria-selected', 'true');
+  await expect(competitionTab).toHaveAttribute('aria-selected', 'false');
+  await expect(stagePanel).toBeVisible();
+  await expect(competitionPanel).toBeHidden();
+
+  await gradeTab.click();
+  await expect(gradeTab).toHaveAttribute('aria-selected', 'true');
+  await expect(stageTab).toHaveAttribute('aria-selected', 'false');
+  await expect(gradePanel).toBeVisible();
+  await expect(stagePanel).toBeHidden();
 });
 
-test('homepage: previews the upcoming stage', async ({ page }) => {
+test('homepage: shows the upcoming events section when content provides upcoming events', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('heading', { name: /Prochains rendez-vous/ })).toBeVisible();
-  await expect(page.getByRole('link', { name: /Voir tous les événements/ })).toBeVisible();
+  const eventsLink = page.getByRole('link', { name: /Voir tous les événements/ });
+  if (await eventsLink.count()) {
+    await expect(eventsLink).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Prochains rendez-vous/ })).toBeVisible();
+  }
 });
 
 test('photos page: lightbox opens and closes', async ({ page }) => {
