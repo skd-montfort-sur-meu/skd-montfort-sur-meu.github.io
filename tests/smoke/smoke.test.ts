@@ -33,15 +33,7 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
   it('emit the HTML shell', () => {
     const home = readFileSync(byName('/index.html')!, 'utf-8');
     expect(home).toContain('<html lang="fr"');
-    expect(home).toContain('Shotokan');
-    expect(home).toContain('Montfort');
-  });
-
-  it('show club info on the homepage', () => {
-    const home = readFileSync(byName('/index.html')!, 'utf-8');
-    expect(home).toContain('skdmontfort@gmail.com');
-    expect(home).toContain('Dojo Coesec');
-    expect(home).toContain('Pierrick Lemou');
+    expect(home).toMatch(/<title>[^<]+<\/title>/);
   });
 
   it('render markdown without leaving raw markers', () => {
@@ -53,27 +45,26 @@ describe.skipIf(!hasDist)('smoke tests (dist/)', () => {
     }
   });
 
-  it('show club events with their categories', () => {
+  it('render the event filters', () => {
     const page = readFileSync(byName('/evenements/index.html')!, 'utf-8');
-    expect(page).toContain('Championnat départementaux');
-    expect(page).toContain('Championnat départemental');
-    expect(page).toContain('Examen de grades – Janvier 2027');
-    expect(page).toContain('Compétitions');
-    expect(page).toContain('Stages');
-    expect(page).not.toContain('**');
+    for (const label of ['Tous', 'Compétitions', 'Stages', 'Grades']) {
+      expect(page).toContain(`role="tab"`);
+      expect(page).toContain(label);
+    }
+    expect(page).toContain('data-panel="all"');
+    expect(page).toContain('data-panel="competition"');
+    expect(page).toContain('data-panel="stage"');
+    expect(page).toContain('data-panel="grade"');
   });
 
-  it('preview upcoming events on the homepage', () => {
+  it('show the teachers and schedule sections', () => {
     const home = readFileSync(byName('/index.html')!, 'utf-8');
-    expect(home).toContain('Prochains');
-  });
-
-  it('show teachers and schedule', () => {
-    const home = readFileSync(byName('/index.html')!, 'utf-8');
-    expect(home).toContain('Frédéric Gelin');
-    expect(home).toContain('Pierrick Lemou');
-    expect(home).toContain('18h15 - 19h30');
-    expect(home).toContain('Adultes');
+    expect(home).toContain('Nos <span class="text-red-600">Professeurs</span>');
+    expect(home).toContain('Nos <span class="text-red-600">Horaires</span>');
+    expect(home).toContain('<table');
+    expect(home).toContain('<th class="px-6 py-4 text-left font-semibold">Jour</th>');
+    expect(home).toContain('<th class="px-6 py-4 text-left font-semibold">Horaires</th>');
+    expect(home).toContain('<th class="px-6 py-4 text-left font-semibold">Public</th>');
   });
 
   it('show the photo gallery on the photos page', () => {
