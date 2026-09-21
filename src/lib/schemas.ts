@@ -179,3 +179,11 @@ export const karateSchema = z.object({
     secondaryHref: required,
   }),
 });
+
+export const karateSeniorsSchema = z.object({
+  hero: z.object({ eyebrow: required, titlePrefix: required, titleHighlight: required, subtitle: required }),
+  benefits: z.array(z.object({ icon: required, title: required, text: required })).min(1),
+  details: z.object({ day: required, time: required, trial: required, location: required, address: required }),
+  teacher: z.object({ name: required, grade: required }),
+  cta: z.object({ title: required, text: required, primaryLabel: required, primaryHref: required, secondaryLabel: required, secondaryHref: required }),
+});

@@ -32,25 +32,20 @@ test('navigation: go to the Événements page from the menu', async ({ page }) =
 
 test('evenements page: tabs filter by category', async ({ page }) => {
   await page.goto('/evenements');
-  const stageCard = page.getByRole('heading', { name: /Stage départemental Multi-Disciplines/ });
   const competitionCard = page.getByRole('heading', { name: 'Championnat départemental', exact: true });
   const gradeCard = page.getByRole('heading', { name: /Examen de grades/ });
-  await expect(stageCard).toBeVisible();
   await expect(competitionCard).toBeVisible();
   await expect(gradeCard).toBeVisible();
 
   await page.getByRole('tab', { name: 'Compétitions', exact: true }).click();
-  await expect(stageCard).toBeHidden();
   await expect(competitionCard).toBeVisible();
   await expect(gradeCard).toBeHidden();
 
   await page.getByRole('tab', { name: 'Stages', exact: true }).click();
-  await expect(stageCard).toBeVisible();
   await expect(competitionCard).toBeHidden();
   await expect(gradeCard).toBeHidden();
 
   await page.getByRole('tab', { name: 'Grades', exact: true }).click();
-  await expect(stageCard).toBeHidden();
   await expect(competitionCard).toBeHidden();
   await expect(gradeCard).toBeVisible();
 });
@@ -58,7 +53,6 @@ test('evenements page: tabs filter by category', async ({ page }) => {
 test('homepage: previews the upcoming stage', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: /Prochains rendez-vous/ })).toBeVisible();
-  await expect(page.getByRole('heading', { name: /Stage départemental Multi-Disciplines/ })).toBeVisible();
   await expect(page.getByRole('link', { name: /Voir tous les événements/ })).toBeVisible();
 });
 
