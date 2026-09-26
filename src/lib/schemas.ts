@@ -85,7 +85,7 @@ const stageEventSchema = z.object({
   time: required,
   location: required,
   address: required,
-  audience: required,
+  audience: z.string().optional(),
   price: required,
   icon: eventIconSchema,
 });
