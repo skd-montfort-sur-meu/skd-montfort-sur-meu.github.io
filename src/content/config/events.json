@@ -38,6 +38,16 @@
       "icon": "lucide:medal"
     },
     {
+      "category": "stage",
+      "title": "Stage départemental Kata Sportif",
+      "date": "2026-10-14",
+      "price": "Gratuit",
+      "time": "19h30 à 21h",
+      "location": "Dojo Liffré",
+      "address": "av. Jules Ferry, 35340 Liffré",
+      "icon": "lucide:users"
+    },
+    {
       "category": "grade",
       "title": "Examen de grades – Janvier 2027",
       "date": "2027-01-17",
