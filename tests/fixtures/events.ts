@@ -28,3 +28,17 @@ export const eventFixtures: ClubEvent[] = [
 ];
 
 export const eventFixtureToday = new Date('2026-09-12T00:00:00');
+
+/** Forme réellement écrite par le CMS quand un champ optionnel est laissé vide. */
+export const eventFixtureWithEmptyOptionals: ClubEvent = {
+  category: 'stage',
+  title: 'Stage de test incomplet',
+  categories: '',
+  date: '2026-11-07',
+  time: '',
+  location: '',
+  address: '3 rue Laennec, 35770 Vezin-sur-Seiche',
+  audience: '',
+  price: 'Gratuit',
+  icon: 'lucide:users',
+};

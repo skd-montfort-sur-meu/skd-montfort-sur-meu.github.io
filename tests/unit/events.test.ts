@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { capitalize, formatEvents, splitUpcomingPast } from '../../src/lib/events';
+import { capitalize, eventPlace, eventSubline, formatEvents, splitUpcomingPast } from '../../src/lib/events';
 import { eventFixtureToday, eventFixtures } from '../fixtures/events';
 
 describe('capitalize', () => {
@@ -9,6 +9,38 @@ describe('capitalize', () => {
 
   it('not break on an empty string', () => {
     expect(capitalize('')).toBe('');
+  });
+});
+
+describe('eventSubline', () => {
+  it('fall back from the empty strings left by the CMS to the audience', () => {
+    expect(eventSubline({ categories: '', audience: 'À partir de 10 ans' })).toBe('À partir de 10 ans');
+  });
+
+  it('show every filled value', () => {
+    expect(eventSubline({ categories: 'Kata / Combat', audience: 'Cadets' })).toBe('Kata / Combat — Cadets');
+  });
+
+  it('return undefined when nothing is filled', () => {
+    expect(eventSubline({ categories: '', audience: '' })).toBeUndefined();
+    expect(eventSubline({})).toBeUndefined();
+  });
+});
+
+describe('eventPlace', () => {
+  it('join the location and the address', () => {
+    expect(eventPlace({ location: 'Dojo Liffré', address: 'av. Jules Ferry' })).toBe(
+      'Dojo Liffré — av. Jules Ferry',
+    );
+  });
+
+  it('keep the address when the location is missing', () => {
+    expect(eventPlace({ location: '', address: 'av. Jules Ferry' })).toBe('av. Jules Ferry');
+  });
+
+  it('return undefined when nothing is filled', () => {
+    expect(eventPlace({ location: '', address: '  ' })).toBeUndefined();
+    expect(eventPlace({})).toBeUndefined();
   });
 });
 

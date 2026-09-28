@@ -21,6 +21,7 @@ import {
   karateFixture,
   karateSeniorsFixture,
 } from '../fixtures/content';
+import { eventFixtureWithEmptyOptionals } from '../fixtures/events';
 
 const root = process.cwd();
 const configDir = join(root, 'src', 'content', 'config');
@@ -62,6 +63,11 @@ describe('editable content (src/content/config)', () => {
     const { events } = readJson('events.json') as { events: { date: string }[] };
     const dates = events.map((event) => event.date);
     expect([...dates].sort()).toEqual(dates);
+  });
+
+  it('accept events whose optional fields were left empty by the CMS', () => {
+    const document = { ...eventsFixture, events: [eventFixtureWithEmptyOptionals] };
+    expect(() => eventsSchema.parse(document)).not.toThrow();
   });
 });
 

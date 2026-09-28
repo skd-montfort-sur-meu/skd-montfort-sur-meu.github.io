@@ -35,6 +35,26 @@ export function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/** Le CMS enregistre `""` pour un champ optionnel laissé vide : on ignore ces valeurs. */
+export function nonEmpty(value?: string): string {
+  return value?.trim() ?? '';
+}
+
+function join(...values: (string | undefined)[]): string | undefined {
+  const parts = values.map(nonEmpty).filter(Boolean);
+  return parts.length > 0 ? parts.join(' — ') : undefined;
+}
+
+/** Ligne de détail sous le titre : épreuves (compétition) et/ou public (stage). */
+export function eventSubline(event: Pick<ClubEvent, 'categories' | 'audience'>): string | undefined {
+  return join(event.categories, event.audience);
+}
+
+/** Lieu et adresse, quel que soit celui des deux qui est renseigné. */
+export function eventPlace(event: Pick<ClubEvent, 'location' | 'address'>): string | undefined {
+  return join(event.location, event.address);
+}
+
 export function formatEvents<T extends EventBase>(events: T[]): FormattedEvent<T>[] {
   return events
     .map((event) => {

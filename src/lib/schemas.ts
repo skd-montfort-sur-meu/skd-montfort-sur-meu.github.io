@@ -1,7 +1,14 @@
 import { z } from 'zod';
+import { EVENT_CATEGORIES } from './events';
 
 const required = z.string().min(1);
 const richtext = z.string();
+
+/** Champ facultatif : le CMS enregistre `""` quand un champ optionnel est laissé vide. */
+const optionalText = z.preprocess(
+  (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+  z.string().optional(),
+);
 
 const isoDate = z
   .string()
@@ -67,36 +74,16 @@ const cardLinkSchema = z.object({
   icon: eventIconSchema,
 });
 
-const competitionEventSchema = z.object({
-  category: z.literal('competition'),
+const eventSchema = z.object({
+  category: z.enum(EVENT_CATEGORIES),
   title: required,
-  categories: richtext,
+  categories: optionalText,
   date: isoDate,
-  time: required,
-  location: required,
-  address: required,
-  icon: eventIconSchema,
-});
-
-const stageEventSchema = z.object({
-  category: z.literal('stage'),
-  title: required,
-  date: isoDate,
-  time: required,
-  location: required,
-  address: required,
-  audience: z.string().optional(),
-  price: required,
-  icon: eventIconSchema,
-});
-
-const gradeEventSchema = z.object({
-  category: z.literal('grade'),
-  title: required,
-  date: isoDate,
-  time: z.string().optional(),
-  location: z.string().optional(),
-  address: z.string().optional(),
+  time: optionalText,
+  location: optionalText,
+  address: optionalText,
+  audience: optionalText,
+  price: optionalText,
   icon: eventIconSchema,
 });
 
@@ -107,7 +94,7 @@ export const eventsSchema = z.object({
     titleHighlight: required,
     subtitle: required,
   }),
-  events: z.array(z.discriminatedUnion('category', [competitionEventSchema, stageEventSchema, gradeEventSchema])).min(1),
+  events: z.array(eventSchema).min(1),
   blocks: z.array(cardLinkSchema).min(1),
 });
 
