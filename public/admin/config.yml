@@ -169,6 +169,7 @@ collections:
             name: "events"
             widget: "list"
             summary: "{{fields.title}} — {{fields.date}}"
+            hint: "Seuls Catégorie, Titre, Date et Icône sont obligatoires. Les autres champs ne sont utiles que selon la catégorie : laissez les autres vides, ils n'apparaîtront pas sur le site."
             fields:
               - label: "Catégorie"
                 name: "category"
@@ -178,18 +179,42 @@ collections:
                   - { label: "Stage", value: "stage" }
                   - { label: "Grades", value: "grade" }
               - { label: "Titre", name: "title", widget: "string" }
-              - { label: "Épreuves / Catégories (compétition)", name: "categories", widget: "string" }
+              - label: "Épreuves / Catégories (compétition)"
+                name: "categories"
+                widget: "string"
+                required: false
+                hint: "Compétitions uniquement : épreuves et catégories concernées."
               - label: "Date"
                 name: "date"
                 widget: "datetime"
                 format: "yyyy-MM-dd"
                 date_format: true
                 time_format: false
-              - { label: "Heure / Détails", name: "time", widget: "string" }
-              - { label: "Lieu", name: "location", widget: "string" }
-              - { label: "Adresse", name: "address", widget: "string" }
-              - { label: "Public concerné (stage)", name: "audience", widget: "string" }
-              - { label: "Prix (stage)", name: "price", widget: "string" }
+              - label: "Heure / Détails"
+                name: "time"
+                widget: "string"
+                required: false
+                hint: "Facultatif : laissez vide si l'horaire n'est pas encore communiqué."
+              - label: "Lieu"
+                name: "location"
+                widget: "string"
+                required: false
+                hint: "Facultatif : laissez vide si le lieu n'est pas encore confirmé."
+              - label: "Adresse"
+                name: "address"
+                widget: "string"
+                required: false
+                hint: "Facultatif. S'affiche à côté du lieu ; laissez vide si elle est inconnue."
+              - label: "Public concerné (stage)"
+                name: "audience"
+                widget: "string"
+                required: false
+                hint: "Stages uniquement : âge ou niveaux concernés."
+              - label: "Prix (stage)"
+                name: "price"
+                widget: "string"
+                required: false
+                hint: "Stages (ou tout événement payant) : montant, ou « Gratuit »."
               - label: "Icône"
                 name: "icon"
                 widget: "select"

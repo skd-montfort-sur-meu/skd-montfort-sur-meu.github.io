@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import eventsData from '../content/config/events.json';
-import { splitUpcomingPast } from '../lib/events';
+import { eventPlace, eventSubline, splitUpcomingPast } from '../lib/events';
 import type { ClubEvent, EventCategory } from '../lib/events';
 import EventCard from './EventCard.astro';
 
@@ -24,7 +24,11 @@ function byFilter(list: typeof upcoming, key: FilterKey) {
 const panels = filters.map((f) => ({
   ...f,
   upcoming: byFilter(upcoming, f.key),
-  past: byFilter(past, f.key),
+  past: byFilter(past, f.key).map((event) => ({
+    ...event,
+    subline: eventSubline(event),
+    place: eventPlace(event),
+  })),
 }));
 ---
 <div class="pt-16">
@@ -103,11 +107,9 @@ const panels = filters.map((f) => ({
                     </div>
                     <div class="flex-1">
                       <h3 class="font-bold text-gray-700">{event.title}</h3>
-                      {(event.categories || event.audience) && (
-                        <p class="text-sm text-gray-500">{event.categories ?? event.audience}</p>
-                      )}
+                      {event.subline && <p class="text-sm text-gray-500">{event.subline}</p>}
                     </div>
-                    {event.location && <p class="text-sm text-gray-400 md:text-right">{event.location}</p>}
+                    {event.place && <p class="text-sm text-gray-400 md:text-right">{event.place}</p>}
                   </article>
                 ))}
               </div>

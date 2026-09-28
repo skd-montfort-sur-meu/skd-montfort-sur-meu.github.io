@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { eventPlace, eventSubline, nonEmpty } from '../lib/events';
 import type { FormattedEvent, ClubEvent, EventCategory } from '../lib/events';
 
 interface Props {
@@ -19,6 +20,11 @@ const badgeClasses: Record<EventCategory, string> = {
   stage: 'bg-gray-200 text-gray-700',
   grade: 'bg-amber-100 text-amber-700',
 };
+
+const subline = eventSubline(event);
+const place = eventPlace(event);
+const time = nonEmpty(event.time);
+const price = nonEmpty(event.price);
 ---
 <article class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
   <div class="grid grid-cols-1 md:grid-cols-[120px_1fr]">
@@ -39,24 +45,22 @@ const badgeClasses: Record<EventCategory, string> = {
           </span>
         </div>
       </div>
-      {(event.categories || event.audience) && (
-        <p class="text-red-600 font-medium mb-4">{event.categories ?? event.audience}</p>
-      )}
+      {subline && <p class="text-red-600 font-medium mb-4">{subline}</p>}
       <div class="space-y-2 text-gray-600">
         <p class="flex items-start gap-2">
           <Icon name="lucide:calendar-days" class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-          <span>{event.dateLabel}{event.time && <> — {event.time}</>}</span>
+          <span>{event.dateLabel}{time && <> — {time}</>}</span>
         </p>
-        {event.location && (
+        {place && (
           <p class="flex items-start gap-2">
             <Icon name="lucide:map-pin" class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-            <span>{event.location}{event.address && <> — {event.address}</>}</span>
+            <span>{place}</span>
           </p>
         )}
-        {event.price && (
+        {price && (
           <p class="flex items-start gap-2">
             <Icon name="lucide:ticket" class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-            <span>{event.price}</span>
+            <span>{price}</span>
           </p>
         )}
       </div>
