@@ -41,6 +41,19 @@ Puis accéder au panneau d'administration sur `/admin`.
 
 En production, l'interface d'administration est servie par Netlify (`/admin`) ; la commande ci-dessus ne sert qu'au développement local (backend local Decap).
 
+### Importer le calendrier fédéral
+
+L'import Castor utilise Symfony AI avec Ollama en local. Installez les dépendances Castor et téléchargez un modèle avant le premier lancement :
+
+```sh
+castor composer install
+ollama pull qwen2.5:3b
+castor events:import --dry-run
+castor events:import
+```
+
+La commande lit le calendrier du comité départemental, suit sa pagination et ajoute les événements manquants dans `src/content/config/events.json`. Les événements déjà présents sont conservés. Le modèle et l'URL Ollama peuvent être remplacés via `OLLAMA_MODEL` et `OLLAMA_URL` (valeurs par défaut : `qwen2.5:3b` et `http://127.0.0.1:11434`).
+
 ## Structure du projet
 
 ```text
