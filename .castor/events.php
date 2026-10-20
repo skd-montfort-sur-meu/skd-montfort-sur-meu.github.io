@@ -113,7 +113,7 @@ function import_events(bool $dryRun = false): void
 Tu extrais les événements sportifs du calendrier du comité départemental d’Ille-et-Vilaine.
 Chaque extrait provient de la fiche détaillée de l’événement indiqué. Utilise sa fiche pour compléter les informations, en gardant le titre et la date du calendrier si la fiche ne les précise pas clairement. Retourne uniquement un objet JSON conforme au schéma.
 Chaque objet doit contenir les clés category, title, categories, date, time, location, address, audience, price et sourceUrl. sourceUrl doit être exactement l’URL de la fiche indiquée dans l’extrait.
-category vaut competition, stage ou grade. date est au format YYYY-MM-DD. Pour une information absente, utilise une chaîne vide.
+category vaut competition, stage, grade ou meeting. date est au format YYYY-MM-DD. Pour une information absente, utilise une chaîne vide.
 Rédige chaque titre en français naturel et en casse de phrase : seule la première lettre et les noms propres prennent une majuscule. Reformule les intitulés entièrement en majuscules pour les rendre lisibles, sans inventer d’information. Dans les titres, développe toujours « DEP » ou « DÉP. » en « départemental ».
 Le champ price contient uniquement un prix ou une mention de gratuité explicitement présents dans la fiche. N’y mets jamais true, false ou une valeur booléenne ; si le prix n’est pas indiqué, retourne une chaîne vide.
 Classe les stages et formations comme stage, les coupes, championnats et challenges comme competition, et les examens ou réunions de règlement de grades comme grade. Le mot « kata » ou « kumite » seul ne suffit pas à déterminer la catégorie.
@@ -137,7 +137,7 @@ PROMPT;
                             'items' => [
                                 'type' => 'object',
                                 'properties' => [
-                                    'category' => ['type' => 'string', 'enum' => ['competition', 'stage', 'grade']],
+                                    'category' => ['type' => 'string', 'enum' => ['competition', 'stage', 'grade', 'meeting']],
                                     'title' => ['type' => 'string'],
                                     'categories' => ['type' => 'string'],
                                     'date' => ['type' => 'string'],
@@ -206,7 +206,7 @@ PROMPT;
         if (!isset($calendarEvents[$sourceUrl])) {
             $sourceUrl = '';
         }
-        if ($title === '' || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) || !in_array($category, ['competition', 'stage', 'grade'], true)) {
+        if ($title === '' || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) || !in_array($category, ['competition', 'stage', 'grade', 'meeting'], true)) {
             continue;
         }
 
@@ -343,6 +343,9 @@ function infer_event_category(string $title, string $fallback): string
 {
     $title = mb_strtolower($title);
 
+    if (preg_match('/\b(réunion|reunion|assemblée générale|assemblee generale|règlement grade|reglement grade)\b/u', $title)) {
+        return 'meeting';
+    }
     if (preg_match('/\b(stage|formation)\b/u', $title)) {
         return 'stage';
     }
@@ -353,5 +356,5 @@ function infer_event_category(string $title, string $fallback): string
         return 'grade';
     }
 
-    return in_array($fallback, ['competition', 'stage', 'grade'], true) ? $fallback : 'stage';
+    return in_array($fallback, ['competition', 'stage', 'grade', 'meeting'], true) ? $fallback : 'stage';
 }

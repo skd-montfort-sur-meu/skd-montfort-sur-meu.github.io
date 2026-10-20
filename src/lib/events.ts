@@ -21,7 +21,7 @@ export type FormattedEvent<T extends EventBase = EventBase> = T & {
   dateLabel: string;
 };
 
-export const EVENT_CATEGORIES = ['competition', 'stage', 'grade'] as const;
+export const EVENT_CATEGORIES = ['competition', 'stage', 'grade', 'meeting'] as const;
 export type EventCategory = (typeof EVENT_CATEGORIES)[number];
 
 export interface ClubEvent extends EventBase {

@@ -178,6 +178,7 @@ collections:
                   - { label: "Compétition", value: "competition" }
                   - { label: "Stage", value: "stage" }
                   - { label: "Grades", value: "grade" }
+                  - { label: "Réunion", value: "meeting" }
               - { label: "Titre", name: "title", widget: "string" }
               - label: "Épreuves / Catégories (compétition)"
                 name: "categories"
