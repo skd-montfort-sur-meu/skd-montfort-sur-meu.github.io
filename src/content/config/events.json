@@ -193,19 +193,19 @@
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kata/"
         },
         {
-            "category": "grade",
+            "category": "meeting",
             "title": "Réunion règlement grade #1",
             "date": "2026-10-17",
-            "icon": "lucide:badge-check",
+            "icon": "lucide:calendar-days",
             "location": "FOUGERES (35)",
             "address": "Complexe des 'Ateliers' RUE DES FRERES DEVERRIA 35300 FOUGERES",
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-reglement-grade-1/"
         },
         {
-            "category": "grade",
+            "category": "meeting",
             "title": "Réunion règlement grade #2",
             "date": "2026-10-25",
-            "icon": "lucide:badge-check",
+            "icon": "lucide:calendar-days",
             "location": "Gymnase du COSEC LE RHEU",
             "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU",
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-reglement-grade-2/"
@@ -256,12 +256,13 @@
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kobudo/"
         },
         {
-            "category": "grade",
+            "category": "meeting",
             "title": "Assemblée Générale Ordinaire",
             "date": "2026-12-19",
-            "icon": "lucide:badge-check",
+            "icon": "lucide:calendar-days",
             "location": "RENNES - CDOS (35)",
-            "address": "Maison Départementale des Sport, 13 bis Avenue de Cucillé 35000 Rennes"
+            "address": "Maison Départementale des Sport, 13 bis Avenue de Cucillé 35000 Rennes",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/assemblee-generale-ordinaire-3/"
         },
         {
             "category": "competition",
