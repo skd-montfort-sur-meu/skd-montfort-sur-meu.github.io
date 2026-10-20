@@ -10,6 +10,7 @@ export interface EventBase {
   location?: string;
   address?: string;
   icon?: string;
+  sourceUrl?: string;
 }
 
 export type FormattedEvent<T extends EventBase = EventBase> = T & {

@@ -215,6 +215,11 @@ collections:
                 widget: "string"
                 required: false
                 hint: "Stages (ou tout événement payant) : montant, ou « Gratuit »."
+              - label: "Lien vers ffkarate.fr"
+                name: "sourceUrl"
+                widget: "string"
+                required: false
+                hint: "Lien vers la fiche de l’événement sur le site du comité."
               - label: "Icône"
                 name: "icon"
                 widget: "select"
