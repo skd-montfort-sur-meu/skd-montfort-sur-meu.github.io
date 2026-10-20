@@ -84,6 +84,10 @@ const eventSchema = z.object({
   address: optionalText,
   audience: optionalText,
   price: optionalText,
+  sourceUrl: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.url().optional(),
+  ),
   icon: eventIconSchema,
 });
 

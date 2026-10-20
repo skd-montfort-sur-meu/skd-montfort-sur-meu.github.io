@@ -60,7 +60,8 @@
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/coupe-dep-benjamins-kata/"
         },
         {
             "category": "competition",
@@ -68,7 +69,8 @@
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/coupe-dep-benjamins-kumite/"
         },
         {
             "category": "competition",
@@ -76,7 +78,8 @@
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/coupe-dep-pupilles-kata/"
         },
         {
             "category": "competition",
@@ -84,7 +87,8 @@
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/coupe-dep-pupilles-kumite/"
         },
         {
             "category": "competition",
@@ -102,7 +106,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-veterans-kata/"
         },
         {
             "category": "competition",
@@ -110,7 +115,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-seniors-kumite/"
         },
         {
             "category": "competition",
@@ -118,7 +124,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-seniors-kata/"
         },
         {
             "category": "competition",
@@ -126,7 +133,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-juniors-kumite/"
         },
         {
             "category": "competition",
@@ -134,7 +142,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-juniors-kata/"
         },
         {
             "category": "competition",
@@ -142,7 +151,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-cadets-kumite/"
         },
         {
             "category": "competition",
@@ -150,7 +160,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-cadets-kata/"
         },
         {
             "category": "competition",
@@ -158,7 +169,8 @@
             "date": "2026-10-04",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
-            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-veterans-kumite/"
         },
         {
             "category": "stage",
@@ -168,7 +180,8 @@
             "time": "19h30 à 21h",
             "location": "Dojo Liffré",
             "address": "av. Jules Ferry, 35340 Liffré",
-            "icon": "lucide:users"
+            "icon": "lucide:users",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kata/"
         },
         {
             "category": "stage",
@@ -176,7 +189,8 @@
             "date": "2026-10-14",
             "icon": "lucide:users",
             "location": "LIFFRÉ (35)",
-            "address": "AV. JULES FERRY 35340 LIFFRE"
+            "address": "AV. JULES FERRY 35340 LIFFRE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kata/"
         },
         {
             "category": "grade",
@@ -184,7 +198,8 @@
             "date": "2026-10-17",
             "icon": "lucide:badge-check",
             "location": "FOUGERES (35)",
-            "address": "Complexe des 'Ateliers' RUE DES FRERES DEVERRIA 35300 FOUGERES"
+            "address": "Complexe des 'Ateliers' RUE DES FRERES DEVERRIA 35300 FOUGERES",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-reglement-grade-1/"
         },
         {
             "category": "grade",
@@ -192,7 +207,8 @@
             "date": "2026-10-25",
             "icon": "lucide:badge-check",
             "location": "Gymnase du COSEC LE RHEU",
-            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU"
+            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-reglement-grade-2/"
         },
         {
             "category": "stage",
@@ -200,7 +216,8 @@
             "date": "2026-10-27",
             "icon": "lucide:users",
             "location": "Complexe sportif Thorigné",
-            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD"
+            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-body-karate/"
         },
         {
             "category": "stage",
@@ -208,7 +225,8 @@
             "date": "2026-11-07",
             "icon": "lucide:users",
             "location": "GUICHEN (35)",
-            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN"
+            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-kobudo-4/"
         },
         {
             "category": "stage",
@@ -216,7 +234,8 @@
             "date": "2026-11-07",
             "icon": "lucide:users",
             "location": "GUICHEN (35)",
-            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN"
+            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-kobudo-4/"
         },
         {
             "category": "stage",
@@ -224,7 +243,8 @@
             "date": "2026-12-13",
             "icon": "lucide:users",
             "location": "Gymnase du COSEC LE RHEU",
-            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU"
+            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-info-grade/"
         },
         {
             "category": "stage",
@@ -232,7 +252,8 @@
             "date": "2026-12-17",
             "icon": "lucide:users",
             "location": "Les Ateliers",
-            "address": "9 RUE DES FRERES DEVERIA 35300 FOUGERES"
+            "address": "9 RUE DES FRERES DEVERIA 35300 FOUGERES",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kobudo/"
         },
         {
             "category": "grade",
@@ -248,19 +269,22 @@
             "date": "2026-12-20",
             "icon": "lucide:trophy",
             "location": "FOUGERES (35)",
-            "address": "A CONFIRMER 35300 FOUGERES"
+            "address": "A CONFIRMER 35300 FOUGERES",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/challenge-berger-2/"
         },
         {
             "category": "grade",
             "title": "Examen de grades – Janvier 2027",
             "date": "2027-01-17",
-            "icon": "lucide:badge-check"
+            "icon": "lucide:badge-check",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/examen-grades-cdk-35-janv-2027/"
         },
         {
             "category": "grade",
             "title": "Examen grades CDK 35 – Janv. 2027",
             "date": "2027-01-17",
-            "icon": "lucide:badge-check"
+            "icon": "lucide:badge-check",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/examen-grades-cdk-35-janv-2027/"
         }
     ],
     "blocks": [

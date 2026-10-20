@@ -112,7 +112,7 @@ function import_events(bool $dryRun = false): void
     $prompt = <<<PROMPT
 Tu extrais les événements sportifs du calendrier du comité départemental d’Ille-et-Vilaine.
 Chaque extrait provient de la fiche détaillée de l’événement indiqué. Utilise sa fiche pour compléter les informations, en gardant le titre et la date du calendrier si la fiche ne les précise pas clairement. Retourne uniquement un objet JSON conforme au schéma.
-Chaque objet doit contenir les clés category, title, categories, date, time, location, address, audience et price.
+Chaque objet doit contenir les clés category, title, categories, date, time, location, address, audience, price et sourceUrl. sourceUrl doit être exactement l’URL de la fiche indiquée dans l’extrait.
 category vaut competition, stage ou grade. date est au format YYYY-MM-DD. Pour une information absente, utilise une chaîne vide.
 Rédige chaque titre en français naturel et en casse de phrase : seule la première lettre et les noms propres prennent une majuscule. Reformule les intitulés entièrement en majuscules pour les rendre lisibles, sans inventer d’information. Dans les titres, développe toujours « DEP » ou « DÉP. » en « départemental ».
 Le champ price contient uniquement un prix ou une mention de gratuité explicitement présents dans la fiche. N’y mets jamais true, false ou une valeur booléenne ; si le prix n’est pas indiqué, retourne une chaîne vide.
@@ -146,8 +146,9 @@ PROMPT;
                                     'address' => ['type' => 'string'],
                                     'audience' => ['type' => 'string'],
                                     'price' => ['type' => 'string'],
+                                    'sourceUrl' => ['type' => 'string'],
                                 ],
-                                'required' => ['category', 'title', 'categories', 'date', 'time', 'location', 'address', 'audience', 'price'],
+                                'required' => ['category', 'title', 'categories', 'date', 'time', 'location', 'address', 'audience', 'price', 'sourceUrl'],
                                 'additionalProperties' => false,
                             ],
                         ],
@@ -181,8 +182,13 @@ PROMPT;
     }
 
     $known = [];
+    $knownUrls = [];
     foreach ($events as $index => $event) {
         $known[normalize_event_key($event['title'], $event['date'])] = $index;
+        $existingUrl = normalize_event_field($event['sourceUrl'] ?? '');
+        if ($existingUrl !== '') {
+            $knownUrls[$existingUrl] = $index;
+        }
     }
 
     $added = [];
@@ -196,13 +202,22 @@ PROMPT;
         $title = normalize_event_title((string) $event['title']);
         $date = trim((string) $event['date']);
         $category = infer_event_category($title, trim((string) $event['category']));
+        $sourceUrl = trim((string) ($event['sourceUrl'] ?? ''));
+        if (!isset($calendarEvents[$sourceUrl])) {
+            $sourceUrl = '';
+        }
         if ($title === '' || !preg_match('/^\d{4}-\d{2}-\d{2}$/', $date) || !in_array($category, ['competition', 'stage', 'grade'], true)) {
             continue;
         }
 
         $key = normalize_event_key($title, $date);
-        if (isset($known[$key])) {
-            $existingIndex = $known[$key];
+        if (($sourceUrl !== '' && isset($knownUrls[$sourceUrl])) || isset($known[$key])) {
+            $existingIndex = $sourceUrl !== '' && isset($knownUrls[$sourceUrl]) ? $knownUrls[$sourceUrl] : $known[$key];
+            if ($sourceUrl !== '' && normalize_event_field($events[$existingIndex]['sourceUrl'] ?? '') === '') {
+                $events[$existingIndex]['sourceUrl'] = $sourceUrl;
+                $enrichedEvents[] = ['title' => $title, 'field' => 'sourceUrl'];
+                $knownUrls[$sourceUrl] = $existingIndex;
+            }
             if ($events[$existingIndex]['category'] !== $category) {
                 $events[$existingIndex]['category'] = $category;
                 $correctedCategories[] = ['title' => $title, 'category' => $category];
@@ -227,6 +242,9 @@ PROMPT;
                 default => 'lucide:users',
             },
         ];
+        if ($sourceUrl !== '') {
+            $addedEvent['sourceUrl'] = $sourceUrl;
+        }
         foreach (['categories', 'time', 'location', 'address', 'audience', 'price'] as $field) {
             $value = normalize_event_field($event[$field] ?? '');
             if ($value !== '') {
@@ -237,6 +255,9 @@ PROMPT;
         $events[] = $addedEvent;
         $added[] = $addedEvent;
         $known[$key] = array_key_last($events);
+        if ($sourceUrl !== '') {
+            $knownUrls[$sourceUrl] = array_key_last($events);
+        }
     }
 
     usort($events, static fn (array $a, array $b): int => $a['date'] <=> $b['date']);
