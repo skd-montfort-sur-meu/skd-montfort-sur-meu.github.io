@@ -1,0 +1,7 @@
+{
+    "require": {
+        "symfony/ai-platform": "^0.14.1",
+        "symfony/ai-ollama-platform": "^0.14.0",
+        "symfony/http-client": "^8.1"
+    }
+}

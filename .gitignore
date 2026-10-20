@@ -26,3 +26,7 @@ pnpm-debug.log*
 # playwright
 playwright-report/
 test-results/
+
+.castor.stub.php
+.castor/*
+!.castor/events.php

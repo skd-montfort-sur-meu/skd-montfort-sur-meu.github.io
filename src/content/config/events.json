@@ -1,77 +1,286 @@
 {
-  "header": {
-    "eyebrow": "Événements",
-    "titlePrefix": "Les rendez-vous",
-    "titleHighlight": "du club",
-    "subtitle": "Compétitions, stages et passages de grade : les prochaines échéances du club."
-  },
-  "events": [
-    {
-      "category": "stage",
-      "title": "Stage départemental Multi-Disciplines",
-      "date": "2026-09-20",
-      "time": "9h à 12h",
-      "location": "Complexe sportif",
-      "address": "3 rue Laennec, 35770 Vezin-sur-Seiche",
-      "audience": "À partir de 10 ans",
-      "price": "Gratuit",
-      "icon": "lucide:users"
+    "header": {
+        "eyebrow": "Événements",
+        "titlePrefix": "Les rendez-vous",
+        "titleHighlight": "du club",
+        "subtitle": "Compétitions, stages et passages de grade : les prochaines échéances du club."
     },
-    {
-      "category": "competition",
-      "title": "Coupe & Championnat départementaux",
-      "categories": "Kata / Combat — Coupe Pupilles / Benjamins, Championnat Minimes",
-      "date": "2026-10-03",
-      "time": "Informations communiquées par les enseignants",
-      "location": "Salle Vitalia",
-      "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
-      "icon": "lucide:trophy"
-    },
-    {
-      "category": "competition",
-      "title": "Championnat départemental",
-      "categories": "Kata / Combat — Cadets / Juniors / Seniors / Vétérans",
-      "date": "2026-10-04",
-      "time": "Informations communiquées par les enseignants",
-      "location": "Salle Vitalia",
-      "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
-      "icon": "lucide:medal"
-    },
-    {
-      "category": "stage",
-      "title": "Stage départemental Kata Sportif",
-      "date": "2026-10-14",
-      "price": "Gratuit",
-      "time": "19h30 à 21h",
-      "location": "Dojo Liffré",
-      "address": "av. Jules Ferry, 35340 Liffré",
-      "icon": "lucide:users"
-    },
-    {
-      "category": "grade",
-      "title": "Examen de grades – Janvier 2027",
-      "date": "2027-01-17",
-      "icon": "lucide:badge-check"
-    }
-  ],
-  "blocks": [
-    {
-      "title": "Compétitions Kata & Combat",
-      "text": "Passez vos épreuves devant les juges en kata ou en combat",
-      "detail": "Pensez à vérifier votre licence et vos protections auprès du club.",
-      "icon": "lucide:shield"
-    },
-    {
-      "title": "Stages",
-      "text": "Perfectionnez vos techniques et préparez vos passages de grade",
-      "detail": "Encadré par des intervenants.",
-      "icon": "lucide:users"
-    },
-    {
-      "title": "Grades",
-      "text": "Consultez les dates d'examens pour le passage de vos grades",
-      "detail": "Les examens sont organisés par le comité départemental.",
-      "icon": "lucide:badge-check"
-    }
-  ]
+    "events": [
+        {
+            "category": "stage",
+            "title": "Stage départemental Arbitrage Complexe Sportif Thorigné Arbitrage",
+            "date": "2026-09-13",
+            "icon": "lucide:users",
+            "time": "09h30 à 16h",
+            "location": "Complexe sportif Thorigné",
+            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Multi-Disciplines",
+            "date": "2026-09-20",
+            "time": "9h à 12h",
+            "location": "Complexe sportif",
+            "address": "3 rue Laennec, 35770 Vezin-sur-Seiche",
+            "audience": "À partir de 10 ans",
+            "price": "Gratuit",
+            "icon": "lucide:users"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Multidisciplines Vern-sur-Seiche (35) Multidisciplines",
+            "date": "2026-09-20",
+            "icon": "lucide:users",
+            "time": "09h à 12h",
+            "location": "VERN-SUR-SEICHE (35)",
+            "address": "3 RUE LAENNEC 35770 VERN-SUR-SEICHE"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Yoseikan Budo Chartres de Bretagne (35) Yoseikan Budo",
+            "date": "2026-09-27",
+            "icon": "lucide:users",
+            "time": "09h30 à 12h30",
+            "location": "CHARTRES DE BRETAGNE (35)",
+            "address": "12 RUE DE LA CROIX AUX POTIERS 35131 CHARTRES-DE-BRETAGNE"
+        },
+        {
+            "category": "competition",
+            "title": "Coupe & Championnat départementaux",
+            "categories": "Kata / Combat — Coupe Pupilles / Benjamins, Championnat Minimes",
+            "date": "2026-10-03",
+            "time": "Informations communiquées par les enseignants",
+            "location": "Salle Vitalia",
+            "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
+            "icon": "lucide:trophy"
+        },
+        {
+            "category": "competition",
+            "title": "Coupe départemental Benjamins – Kata",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Coupe départemental Benjamins – Kumite",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Coupe départemental Pupilles – Kata",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Coupe départemental Pupilles – Kumite",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental",
+            "categories": "Kata / Combat — Cadets / Juniors / Seniors / Vétérans",
+            "date": "2026-10-04",
+            "time": "Informations communiquées par les enseignants",
+            "location": "Salle Vitalia",
+            "address": "Av. du Général de Gaulle, 35530 Noyal-sur-Vilaine",
+            "icon": "lucide:medal"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Veterans – Kata",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Seniors – Kumite",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Seniors – Kata",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Juniors – Kumite",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Juniors – Kata",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Cadets – Kumite",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Cadets – Kata",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental Veterans – Kumite",
+            "date": "2026-10-04",
+            "icon": "lucide:trophy",
+            "location": "Salle Vitalia",
+            "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Kata Sportif",
+            "date": "2026-10-14",
+            "price": "Gratuit",
+            "time": "19h30 à 21h",
+            "location": "Dojo Liffré",
+            "address": "av. Jules Ferry, 35340 Liffré",
+            "icon": "lucide:users"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Kata Liffré (35) Karaté",
+            "date": "2026-10-14",
+            "icon": "lucide:users",
+            "location": "LIFFRÉ (35)",
+            "address": "AV. JULES FERRY 35340 LIFFRE"
+        },
+        {
+            "category": "grade",
+            "title": "Réunion règlement grade #1",
+            "date": "2026-10-17",
+            "icon": "lucide:badge-check",
+            "location": "FOUGERES (35)",
+            "address": "Complexe des 'Ateliers' RUE DES FRERES DEVERRIA 35300 FOUGERES"
+        },
+        {
+            "category": "grade",
+            "title": "Réunion règlement grade #2",
+            "date": "2026-10-25",
+            "icon": "lucide:badge-check",
+            "location": "Gymnase du COSEC LE RHEU",
+            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Body Karaté",
+            "date": "2026-10-27",
+            "icon": "lucide:users",
+            "location": "Complexe sportif Thorigné",
+            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Kobudo Guichen (35)",
+            "date": "2026-11-07",
+            "icon": "lucide:users",
+            "location": "GUICHEN (35)",
+            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Kobudo Guichen (35) Kobudo",
+            "date": "2026-11-07",
+            "icon": "lucide:users",
+            "location": "GUICHEN (35)",
+            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Info Grade",
+            "date": "2026-12-13",
+            "icon": "lucide:users",
+            "location": "Gymnase du COSEC LE RHEU",
+            "address": "AVENUE DE LA BOUVARDIERE 35650 LE RHEU"
+        },
+        {
+            "category": "stage",
+            "title": "Stage départemental Kobudo Les Ateliers",
+            "date": "2026-12-17",
+            "icon": "lucide:users",
+            "location": "Les Ateliers",
+            "address": "9 RUE DES FRERES DEVERIA 35300 FOUGERES"
+        },
+        {
+            "category": "grade",
+            "title": "Assemblée Générale Ordinaire",
+            "date": "2026-12-19",
+            "icon": "lucide:badge-check",
+            "location": "RENNES - CDOS (35)",
+            "address": "Maison Départementale des Sport, 13 bis Avenue de Cucillé 35000 Rennes"
+        },
+        {
+            "category": "competition",
+            "title": "Challenge Berger Fougères (35)",
+            "date": "2026-12-20",
+            "icon": "lucide:trophy",
+            "location": "FOUGERES (35)",
+            "address": "A CONFIRMER 35300 FOUGERES"
+        },
+        {
+            "category": "grade",
+            "title": "Examen de grades – Janvier 2027",
+            "date": "2027-01-17",
+            "icon": "lucide:badge-check"
+        },
+        {
+            "category": "grade",
+            "title": "Examen grades CDK 35 – Janv. 2027",
+            "date": "2027-01-17",
+            "icon": "lucide:badge-check"
+        }
+    ],
+    "blocks": [
+        {
+            "title": "Compétitions Kata & Combat",
+            "text": "Passez vos épreuves devant les juges en kata ou en combat",
+            "detail": "Pensez à vérifier votre licence et vos protections auprès du club.",
+            "icon": "lucide:shield"
+        },
+        {
+            "title": "Stages",
+            "text": "Perfectionnez vos techniques et préparez vos passages de grade",
+            "detail": "Encadré par des intervenants.",
+            "icon": "lucide:users"
+        },
+        {
+            "title": "Grades",
+            "text": "Consultez les dates d'examens pour le passage de vos grades",
+            "detail": "Les examens sont organisés par le comité départemental.",
+            "icon": "lucide:badge-check"
+        }
+    ]
 }
