@@ -47,12 +47,30 @@ L'import Castor utilise Symfony AI avec Ollama en local. Installez les dépendan
 
 ```sh
 castor composer install
-ollama pull qwen2.5:3b
+ollama pull qwen2.5
 castor events:import --dry-run
 castor events:import
 ```
 
-La commande lit le calendrier du comité départemental, suit sa pagination et ajoute les événements manquants dans `src/content/config/events.json`. Les événements déjà présents sont conservés. Le modèle et l'URL Ollama peuvent être remplacés via `OLLAMA_MODEL` et `OLLAMA_URL` (valeurs par défaut : `qwen2.5:3b` et `http://127.0.0.1:11434`).
+La commande lit le calendrier du comité départemental, suit sa pagination et ajoute les événements manquants dans `src/content/config/events.json`. Les événements déjà présents sont conservés. Le modèle, l'URL et le délai d'attente d'Ollama peuvent être remplacés via `OLLAMA_MODEL`, `OLLAMA_URL` et `OLLAMA_TIMEOUT` (valeurs par défaut : `qwen2.5:latest`, `http://127.0.0.1:11434` et 600 secondes).
+
+#### Import automatique hebdomadaire (macOS)
+
+L'import peut tourner chaque vendredi à 12h et ouvrir une PR quand le calendrier a changé :
+
+```sh
+castor events:schedule
+```
+
+La commande copie [`scripts/import-events-pr.sh`](scripts/import-events-pr.sh) dans `~/.local/bin/skd-events-import` et installe un agent launchd (`~/Library/LaunchAgents/fr.skdmontfort.events-import.plist`). À chaque lancement, le script démarre Ollama si besoin, lance l'import dans un worktree séparé à jour de `origin/main` (le checkout de travail n'est pas touché), puis pousse la branche `auto/import-events` et ouvre ou met à jour la PR s'il y a des changements. Une notification macOS signale chaque PR et chaque échec.
+
+- Logs : `~/Library/Logs/skd-events-import.log`
+- Lancer tout de suite : `launchctl kickstart gui/$(id -u)/fr.skdmontfort.events-import`
+- Tester sans pousser ni ouvrir de PR : `DRY_RUN=1 scripts/import-events-pr.sh`
+- Après une modification du script, relancer `castor events:schedule` pour mettre à jour la version installée.
+- Supprimer la planification : `castor events:unschedule`
+
+Prérequis : `gh` authentifié et un accès en push au dépôt. Si le Mac est éteint à l'heure prévue, l'import de la semaine est sauté ; s'il est en veille, il se lance au réveil.
 
 ## Structure du projet
 
