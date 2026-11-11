@@ -30,3 +30,4 @@ test-results/
 .castor.stub.php
 .castor/*
 !.castor/events.php
+!.castor/schedule.php
