@@ -8,41 +8,35 @@
     "events": [
         {
             "category": "stage",
-            "title": "Stage départemental Arbitrage Complexe Sportif Thorigné Arbitrage",
+            "title": "Stage départemental Arbitrage",
             "date": "2026-09-13",
             "icon": "lucide:users",
             "time": "09h30 à 16h",
             "location": "Complexe sportif Thorigné",
-            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD"
+            "address": "16 RUE DES LONGRAIS 35235 THORIGNE-FOUILLARD",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-arbitrage-2/"
         },
         {
             "category": "stage",
-            "title": "Stage départemental Multi-Disciplines",
+            "title": "Stage départemental Multidisciplines",
             "date": "2026-09-20",
             "time": "9h à 12h",
             "location": "Complexe sportif",
-            "address": "3 rue Laennec, 35770 Vezin-sur-Seiche",
+            "address": "3 rue Laennec, 35770 Vern-sur-Seiche",
             "audience": "À partir de 10 ans",
             "price": "Gratuit",
-            "icon": "lucide:users"
-        },
-        {
-            "category": "stage",
-            "title": "Stage départemental Multidisciplines Vern-sur-Seiche (35) Multidisciplines",
-            "date": "2026-09-20",
             "icon": "lucide:users",
-            "time": "09h à 12h",
-            "location": "VERN-SUR-SEICHE (35)",
-            "address": "3 RUE LAENNEC 35770 VERN-SUR-SEICHE"
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-multidisciplines/"
         },
         {
             "category": "stage",
-            "title": "Stage départemental Yoseikan Budo Chartres de Bretagne (35) Yoseikan Budo",
+            "title": "Stage départemental Yoseikan Budo",
             "date": "2026-09-27",
             "icon": "lucide:users",
             "time": "09h30 à 12h30",
             "location": "CHARTRES DE BRETAGNE (35)",
-            "address": "12 RUE DE LA CROIX AUX POTIERS 35131 CHARTRES-DE-BRETAGNE"
+            "address": "12 RUE DE LA CROIX AUX POTIERS 35131 CHARTRES-DE-BRETAGNE",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-yoseikan-budo-2/"
         },
         {
             "category": "competition",
@@ -56,7 +50,7 @@
         },
         {
             "category": "competition",
-            "title": "Coupe départemental Benjamins – Kata",
+            "title": "Coupe départementale Benjamins – Kata",
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
@@ -65,7 +59,7 @@
         },
         {
             "category": "competition",
-            "title": "Coupe départemental Benjamins – Kumite",
+            "title": "Coupe départementale Benjamins – Kumite",
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
@@ -74,7 +68,7 @@
         },
         {
             "category": "competition",
-            "title": "Coupe départemental Pupilles – Kata",
+            "title": "Coupe départementale Pupilles – Kata",
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
@@ -83,12 +77,36 @@
         },
         {
             "category": "competition",
-            "title": "Coupe départemental Pupilles – Kumite",
+            "title": "Coupe départementale Pupilles – Kumite",
             "date": "2026-10-03",
             "icon": "lucide:trophy",
             "location": "Salle Vitalia",
             "address": "AVENUE DU GENERAL DE GAULLE 35530 NOYAL-SUR-VILAINE",
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/coupe-dep-pupilles-kumite/"
+        },
+        {
+            "category": "competition",
+            "title": "Animation départementale Poussins – Kata",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/animation-dep-poussins-kata/",
+            "location": "Salle Vitalia, AVENUE DU GENERAL DE GAULLE, 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental minimes – kumite",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-minimes-kumite/",
+            "location": "Salle Vitalia, AVENUE DU GENERAL DE GAULLE, 35530 NOYAL-SUR-VILAINE"
+        },
+        {
+            "category": "competition",
+            "title": "Championnat départemental minimes – kata",
+            "date": "2026-10-03",
+            "icon": "lucide:trophy",
+            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/championnat-dep-minimes-kata/",
+            "location": "Salle Vitalia, AVENUE DU GENERAL DE GAULLE, 35530 NOYAL-SUR-VILAINE"
         },
         {
             "category": "competition",
@@ -184,15 +202,6 @@
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kata/"
         },
         {
-            "category": "stage",
-            "title": "Stage départemental Kata Liffré (35) Karaté",
-            "date": "2026-10-14",
-            "icon": "lucide:users",
-            "location": "LIFFRÉ (35)",
-            "address": "AV. JULES FERRY 35340 LIFFRE",
-            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-dep-kata/"
-        },
-        {
             "category": "meeting",
             "title": "Réunion règlement grade #1",
             "date": "2026-10-17",
@@ -222,15 +231,6 @@
         {
             "category": "stage",
             "title": "Stage départemental Kobudo Guichen (35)",
-            "date": "2026-11-07",
-            "icon": "lucide:users",
-            "location": "GUICHEN (35)",
-            "address": "AVENUE CHARLES DE GAULLE 35580 GUICHEN",
-            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/stage-kobudo-4/"
-        },
-        {
-            "category": "stage",
-            "title": "Stage départemental Kobudo Guichen (35) Kobudo",
             "date": "2026-11-07",
             "icon": "lucide:users",
             "location": "GUICHEN (35)",
@@ -276,13 +276,6 @@
         {
             "category": "grade",
             "title": "Examen de grades – Janvier 2027",
-            "date": "2027-01-17",
-            "icon": "lucide:badge-check",
-            "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/examen-grades-cdk-35-janv-2027/"
-        },
-        {
-            "category": "grade",
-            "title": "Examen grades CDK 35 – Janv. 2027",
             "date": "2027-01-17",
             "icon": "lucide:badge-check",
             "sourceUrl": "https://sites.ffkarate.fr/illeetvilaine/event/examen-grades-cdk-35-janv-2027/"

@@ -108,13 +108,17 @@ function import_events(bool $dryRun = false): void
         $snippets[] = sprintf("Événement : %s\nURL : %s\nTexte : %s", $event['title'], $event['url'], $details);
     }
 
-    $platform = OllamaFactory::createPlatform($ollamaUrl);
+    $ollamaTimeout = (float) (getenv('OLLAMA_TIMEOUT') ?: 600);
+    $platform = OllamaFactory::createPlatform($ollamaUrl, httpClient: HttpClient::create([
+        'timeout' => $ollamaTimeout,
+        'max_duration' => 0,
+    ]));
     $prompt = <<<PROMPT
 Tu extrais les événements sportifs du calendrier du comité départemental d’Ille-et-Vilaine.
 Chaque extrait provient de la fiche détaillée de l’événement indiqué. Utilise sa fiche pour compléter les informations, en gardant le titre et la date du calendrier si la fiche ne les précise pas clairement. Retourne uniquement un objet JSON conforme au schéma.
 Chaque objet doit contenir les clés category, title, categories, date, time, location, address, audience, price et sourceUrl. sourceUrl doit être exactement l’URL de la fiche indiquée dans l’extrait.
 category vaut competition, stage, grade ou meeting. date est au format YYYY-MM-DD. Pour une information absente, utilise une chaîne vide.
-Rédige chaque titre en français naturel et en casse de phrase : seule la première lettre et les noms propres prennent une majuscule. Reformule les intitulés entièrement en majuscules pour les rendre lisibles, sans inventer d’information. Dans les titres, développe toujours « DEP » ou « DÉP. » en « départemental ».
+Rédige chaque titre en français naturel et en casse de phrase : seule la première lettre et les noms propres prennent une majuscule. Reformule les intitulés entièrement en majuscules pour les rendre lisibles, sans inventer d’information. Dans les titres, développe toujours « DEP » ou « DÉP. » en « départemental », accordé avec le nom qui précède (« Coupe départementale », « Animation départementale », « Championnat départemental », « Stage départemental »).
 Le champ price contient uniquement un prix ou une mention de gratuité explicitement présents dans la fiche. N’y mets jamais true, false ou une valeur booléenne ; si le prix n’est pas indiqué, retourne une chaîne vide.
 Classe les stages et formations comme stage, les coupes, championnats et challenges comme competition, et les examens ou réunions de règlement de grades comme grade. Le mot « kata » ou « kumite » seul ne suffit pas à déterminer la catégorie.
 Ne complète pas les informations absentes et ignore les liens de pagination ou éléments qui ne sont pas des événements.
@@ -335,6 +339,12 @@ function normalize_event_title(string $title): string
         $title = mb_strtoupper(mb_substr($title, 0, 1)).mb_substr($title, 1);
     }
     $title = preg_replace('/\b(?:dép|dep)\.?(?=\s|$)/iu', 'départemental', $title) ?? $title;
+    // Accorde « départemental » au féminin après un nom féminin (« Coupe départementale »).
+    $title = preg_replace(
+        '/\b(coupe|animation|réunion|reunion|assemblée|assemblee|formation|sélection|selection|rencontre|journée|journee|compétition|competition|finale|soirée|soiree|séance|seance)(\s+)départemental\b/iu',
+        '$1$2départementale',
+        $title,
+    ) ?? $title;
 
     return $title;
 }
